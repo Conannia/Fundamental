@@ -1,0 +1,22 @@
+<script>
+    let hargaApel = 10000
+    let hargaAnggur = 15000
+    let hargaJeruk = 20000
+
+    let qtyApel = parseInt(prompt(`Apel = Rp ${hargaApel} /buah. Berapa jumlah Apel yang anda beli?`))
+    let qtyAnggur = +prompt(`Anggur = Rp ${hargaAnggur} /buah.Berapa jumalah Anggur yang ingin anda beli?`)
+    let qtyJeruk = +prompt(`Jeruk = Rp ${hargaJeruk} /buah. Berapa jumlah jeruk yang ingin anda beli?`)
+
+    let totalApel = hargaApel*qtyApel
+    let totalAnggur = hargaAnggur*qtyAnggur
+    let totalJeruk = hargaJeruk*qtyJeruk
+
+    let totalbayar = (totalApel+totalJeruk+totalAnggur)
+
+    alert(`
+    Apel ${qtyApel} x Rp ${hargaApel} = ${totalApel}
+    Anggur ${qtyAnggur} x Rp ${hargaAnggur} = ${totalAnggur}
+    Jeruk ${qtyJeruk} x Rp ${hargaJeruk} = ${totalJeruk}
+    Total = ${totalbayar}`)
+   
+</script>
