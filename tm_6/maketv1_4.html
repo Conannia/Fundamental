@@ -1,0 +1,141 @@
+<script>
+    let fruits = [[`Apel`, 10_000, 5], [`Anggur`, 15_000, 5], ['Pisang', 20_000, 5]]
+    let cart = []
+    let totalPrice = 0
+
+    while(true) {
+        let menuUTAMA = +prompt(`Selamat Datang di Toko Buah Fresh.
+        1. Daftar Buah
+        2. Tambah Buah
+        3. Hapus Buah
+        4. Beli Buah
+        5. Exit`)
+
+        if (menuUTAMA===1) {
+            let list = 'Daftar Buah di Toko Buah Fresh: \n'
+            for (let i = 0; i < fruits.length; i++) {
+                list += `${i + 1}. ${fruits[i][0]} = Rp${fruits[i][1].toLocaleString()}/buah. Stock = ${fruits[i][2]}\n`
+            }
+            alert(list)
+        }else if (menuUTAMA===2){
+            let newData = []
+            let name
+
+            while (true) {
+                let nameInput = prompt(`Input nama Buah :`)
+                if(!nameInput){
+                    alert('Tolong Input yang benar!')
+                }else {
+                    newData.push(nameInput)
+                    name = nameInput
+                    break
+                }
+            }
+            while(true){
+                let price = +prompt(`Input Harga Buah:`)
+                if(!price){
+                    alert(`Tolong Input yang benar`)
+                }else{
+                    newData.push(price)
+                    break
+                }
+            }
+            while(true){
+                let stock = +prompt(`Input Stok Buah`)
+                if(!stock) {
+                    alert(`Tolong Input yang benar`)
+                }else {
+                    newData.push(stock)
+                    break
+                }
+            }
+           
+            fruits.push(newData)
+
+            alert (`Data buah ${name} sudah dimasukan ke dalam Database`)
+        }else if (menuUTAMA === 3){
+            let list = 'Buah Nomor berapa yang ingin anda Hapus? \n'
+            for (let i = 0; i < fruits.length; i++) {
+                list += `${i + 1}. ${fruits[i][0]} = Rp${fruits[i][1].toLocaleString()}/buah. Stock = ${fruits[i][2]}\n`
+            }
+            let index = +prompt(list)
+            //console.log(index)
+            fruits.splice(index - 1, 1)
+            alert(`Data buah ke - ${index} telah terhapus dari Database`)
+        // }else if (menuUTAMA===4){
+        //     // While ini adalah looping besar untuk membeli buah
+        //     while (true){
+        //         // menampilkan sekaligus meminta user memilih buah mana yang ingin dibeli
+        //         let list = 'Daftar Buah TOKO FRESH: \n'
+        //         for (let i = 0; i < fruits.length; i++) {
+        //             list += `${i + 1}. ${fruits[i][0]} = Rp${fruits[i][1].toLocaleString()}/buah. Stock = ${fruits[i][2]}\n`
+        //         }
+        //         list += `Buah Nomor berapa yang ingin Anda beli?`
+                
+        //         let index = +prompt(list)
+                
+        //         while (true) {
+        //             // meminta user untuk menentukan qty pembelian produk
+        //             let qty = prompt(`Berapa ${fruits[index - 1][0]} yang ingin Anda beli? *stok = ${fruits[index - 1][2]}`)
+                    
+        //             if(qty > fruits[index - 1][2]){
+        //                 //kalau user qty melebihi stok, maka akan muncul alert, kemudian kembali lagi meminta qty
+        //                 alert(`Quantity melebihi stok produk, mohon input sesuai stok yang ada`)
+        //             } else if (qty <= fruits[index-1][2]){
+        //                 //kalau qty sesuai stok, data buah dimasukan ke dalam cart
+        //                 cart.push([fruits[index - 1][0], fruits[index - 1][1], qty])
+
+        //                 //untuk menghitung total price
+        //                 totalPrice += fruits[index-1][1] * qty
+
+        //                 alert(`Buah ${fruits[index - 1][0]} sudah dimasukan ke dalam Keranjang`)
+
+        //                 //setia berhasil menambahkan barang ke cart, maka akan muncul isi cart
+        //                 let keranjang = `Daftar Keranjang Anda: \n`
+        //                 for(let i = 0; i < cart.length; i++) {
+        //                     keranjang+=`${i + 1}. ${cart[i][0]}, Rp${cart[i][1].toLocaleString()} x ${cart[i][2]} = Rp${(cart[i][1] * cart[i][2]).toLocaleString()}\n`
+        //                 }
+        //                 keranjang += `Total belanja anda = Rp${totalPrice.toLocaleString()}`
+        //                 alert(keranjang)
+        //                 break
+        //             }
+        //         }
+        //         // untuk konfirmasi ke user apakah ingin membeli buah lagi
+        //         let konfirmasi = confirm(`Apakah Anda mau membeli buah yang lain?`)
+                
+        //         //kalau user sudah selesai membeli buah, maka looping pembelian buah akan selesai dan lanjut ke paypent
+        //         if(!konfirmasi) break
+        //     }
+
+        //     //ini looping besar untuk payment
+        //     while(true){
+        //         // untuk menampilkan isi keranjang sekaligus meminta input nominal pembayaran
+        //         let keranjang = `Daftar Keranjang Anda: \n`
+        //         for(let i = 0; i < cart.length; i++){
+        //             keranjang+=`${i + 1}. ${cart[i][0]}, Rp${cart[i][1].toLocaleString()} x ${cart[i][2]} = Rp${(cart[i][1] * cart[i][2]).toLocaleString()}\n`
+        //         }
+        //         keranjang += `Total belanja anda = Rp${totalPrice.toLocaleString()}
+        //         Tolong input nominal pembayaran: `
+                
+        //         let nominal = +prompt(keranjang)
+        //         if(nominal < totalPrice) {
+        //             alert(`Mohon input nilai yang sesuai dengan total belanja yaitu Rp${totalPrice.toLocaleString()}`)
+        //         } else if (nominal=== totalPrice) {
+        //             alert(`Terima kasih! Pesanan anda akan segera diantar`)
+        //             break
+        //         } else if (nominal > totalPrice) {\
+        //             //kalau uangnya lebih maka looping payment stop dan diinformasikan kembaliannya
+        //             alert(`Terima kasih! Uang kembalian Anda ${(nominal-totalPrice).toLocaleString()}
+        //             Pesanan Anda akan segera diantar.`)
+        //             break
+        //         }
+        //     }
+            
+        }else  if( menuUTAMA===5){
+            alert('Terima kasih. Silahkan datang di lain waktu')
+            break
+        }else {
+            alert('Menu tidak ada! Tolong input menu dengan benar')
+        }
+    }
+</script>
