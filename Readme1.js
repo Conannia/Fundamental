@@ -1,2 +1,0 @@
-Fundamental
-console.log('mmm')
