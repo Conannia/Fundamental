@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+    #table-input input,
+    select {
+        margin: 5px;
+    }
+    table{
+        width: 40%;
+    }
+</style>
+<body>
+    <center>
+        <h1>MARKET V2.0</h1>
+    </center>
+    <FIEldset>
+        <legend>Filter</legend>
+        <label for="filter-nama">Nama</label>
+        <input type="text" id="filter-nama" oninput="filterNama(this.value)" >
+        <br><br>
+        <label>Harga</label>
+        <input type="number" id="harga-1">
+        <label> - </label>
+        <input type="number" id="harga-2">
+        <br> <br>
+        <label for="filter-cate">Kategory</label>
+        <select id="filter-cate">
+            <option value ="All">All</option>
+            <option value ="Fast Food">Fast Food</option>
+            <option value ="Electronic">Electronic</option>
+            <option value ="Cloth">Cloth</option>
+            <option value ="Fruit">Fruit</option>
+        </select>
+        <br><br>
+        <button>Reset</button>
+      
+    </FIEldset>
+    <br>
+    <fieldset>
+        <legend>Input Data</legend>
+        <table id="table-input">
+            <tr>
+                <td>
+                    <Input type="text" id="Nama" placeholder="Nama">
+                </td>
+                <td>
+                    <Input type="number" id="Harga" placeholder="Harga">
+                </td>
+                <td>
+                    <select id="cate">
+                        <option value="All">All</option>
+                        <option value="Fast Food">Fast Food</option>
+                        <option value="Electronic">Electronic</option>
+                        <option value="Cloth">Cloth</option>
+                        <option value="Fruit">Fruit</option>
+                </td>
+                <td>
+                    <Input type="number" id="stok" placeholder="Stok">
+                </td> 
+                <!-- td itu untuk kolom biasa, kalau th untuk langsung bold -->
+            </tr>
+        </table>
+        <br>
+        <button onclick="inputData">Input</button>
+    </fieldset>
+    <fieldset>
+        <legend>Table Data</legend>
+        <table id="table-data"> 
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Kategory</th>
+                    <th>Nama</th>
+                    <th>Harga</th>
+                    <th>Stok</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </fieldset>
+</body>
+<script src='./database.js'></script>
+<script>
+    let showData = (data) => {
+        let tbody = document.getElementById(`table-data`).tBodies[0]
+
+        let res = ''
+        data.forEach(item => {
+            res +=`
+            <tr>
+                <td><center>${item.id}</center></td>
+                <td><center>${item.kate}</center></td>
+                <td><center>${item.nama}</center></td>
+                <td><center>${item.harga}</center></td>
+                <td><center>${item.stok}</center></td>
+            </tr>
+            `
+        })
+        
+        tbody.innerHTML = res
+    }
+
+    showData(products)
+    //console.log(showData)
+    
+    let inputData = () => {
+        let nama = document.getElementById('nama').value
+        let harga = +document.getElementById('harga').value
+        let kate = document.getElementById('kate').value
+        let stok = document.getElementById('stok').value
+        let id = Date.now()
+        //console.log(nama, harga, kate, stok, id)
+        product.push(new product(id, kate, nama, harga, stok))
+        showData(products)
+    }
+
+    let filterNama = (value) => {
+        let filterbyNama = products.filter(item => {
+           return item.nama.toLowerCase().includes(value.toLowerCase)
+        })
+        //console.log(filterbyNama)
+
+        showData(filterbyNama)
+    }
+
+    let filterHarga = () =>{
+        
+    }
+
+</script>
+
+</html>
